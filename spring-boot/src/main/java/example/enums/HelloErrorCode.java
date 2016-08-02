@@ -1,4 +1,4 @@
-package hello.enums;
+package example.enums;
 
 public enum HelloErrorCode {
 	DEFAULT(1, "default error")
