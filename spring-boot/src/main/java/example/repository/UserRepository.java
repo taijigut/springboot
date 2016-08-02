@@ -1,11 +1,16 @@
 package example.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.security.access.annotation.Secured;
 
 import example.domain.User;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, String>{
+@Secured("ROLE_USER")
+@RepositoryRestResource(collectionResourceRel="user", path = "users")
+public interface UserRepository extends PagingAndSortingRepository<User, String>{
 
+	@Override
+	@Secured("ROLE_ADMIN")
+	public void delete(Iterable<? extends User> arg0);
 }
